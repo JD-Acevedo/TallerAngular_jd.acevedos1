@@ -10,6 +10,7 @@ import { SerieListComponent } from './serie-list/serie-list.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[SerieListComponent]
 })
 export class SerieModule { }
