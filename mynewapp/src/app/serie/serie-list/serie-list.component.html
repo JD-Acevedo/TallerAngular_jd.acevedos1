@@ -1,32 +1,51 @@
 <div class="container-fluid">
-  <div class="col-6">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="h4">#</th>
-          <th class="h4">Name</th>
-          <th class="h4">Channel</th>
-          <th class="h4">Seasons</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(s of series; track s){
-        <tr>
-          <td>
-            <dd>{{ s.id }}</dd>
-          </td>
-          <td>
-            <dd>{{ s.name }}</dd>
-          </td>
-          <td>
-            <dd>{{ s.channel }}</dd>
-          </td>
-          <td>
-            <dd>{{ s.seasons }}</dd>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="h4">#</th>
+            <th class="h4">Name</th>
+            <th class="h4">Channel</th>
+            <th class="h4">Seasons</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(s of series; track s){
+          <tr>
+            <td>
+              <dd>{{ s.id }}</dd>
+            </td>
+            <td>
+              <dd class="serie-name" (click)="onSerieClick(s)">{{ s.name }}</dd>
+            </td>
+            <td>
+              <dd>{{ s.channel }}</dd>
+            </td>
+            <td>
+              <dd>{{ s.seasons }}</dd>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <p class="h6">Season average: {{ getAverageSeasons() }}</p>
+    </div>
+    
+    <div class="col-md-6">
+      @if(selectedSerie){
+        <div id="card" class="card">
+          <img id="imagenCard" class="card-img-top" [src]="selectedSerie.poster" 
+               style="max-height: 400px; object-fit: cover;">
+          <div class="card-body">
+            <h5 id="tituloCard" class="card-title">{{selectedSerie.name}}</h5>
+            <p id="cuerpoCard" class="card-text">{{selectedSerie.description}}</p>
+            <a id="linkCard" class="card-link" [href]="selectedSerie.webpage" 
+               target="_blank" rel="noopener">Ver más</a>
+          </div>
+        </div>
+      }
+    </div>
   </div>
 </div>
+<script type="module" src="./serie.module.ts"></script>
